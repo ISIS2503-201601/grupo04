@@ -25,7 +25,13 @@ public interface IServicioRegistroMockLocal
      * Agrega un registro al sistema
      * @param registro Nuevo oferta
      */
-    public void agregarRegistro(RegistroSismo registro);
+    public void agregarRegistroSismo(RegistroSismo registro);
+    
+     /**
+     * Agrega un registro al sistema
+     * @param registro Nuevo oferta
+     */
+    public void agregarRegistro(RegistroSensor registro);
 
     /**
      * Elimina un oferta del sistema

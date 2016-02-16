@@ -7,6 +7,7 @@
 package co.edu.uniandes.csw.satt.servicios;
 
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
+import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -63,6 +64,13 @@ public class RegistroService {
             registroEjb.agregarRegistro(registro);
         }
         
+        return mb;
+    }
+    
+    public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
+        for (RegistroSismo registro : mb) {
+            registroEjb.agregarRegistroSismo(registro);
+        }
         return mb;
     }
  

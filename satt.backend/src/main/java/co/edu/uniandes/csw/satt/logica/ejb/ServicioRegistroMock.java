@@ -65,7 +65,21 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      * @param registro Nuevo registro
      */
  
-    public void agregarRegistro(RegistroSismo pRegistro)
+    public void agregarRegistro(RegistroSensor pRegistro)
+    {
+        try
+        {
+            
+            persistencia.create(pRegistro);
+        }
+        catch (OperacionInvalidaException ex)
+        {
+            Logger.getLogger(ServicioRegistroMock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+    public void agregarRegistroSismo(RegistroSismo pRegistro)
     {
         try
         {
