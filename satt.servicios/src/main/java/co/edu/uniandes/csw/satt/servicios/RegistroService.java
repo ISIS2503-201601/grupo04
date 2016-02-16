@@ -43,6 +43,13 @@ public class RegistroService {
  
     }
     
+    @GET
+    @Path("registrosPosibleTsunami/")
+    public List<RegistroSensor> getTodasLasRegistrosPosibleTsunami() {
+        return registroEjb.darRegistrosPosibleTsunami();
+ 
+    }
+    
     /**
      * Servicio que recibe un objeto JSON con una registro que se desea agregar a la lista de registros.
      *

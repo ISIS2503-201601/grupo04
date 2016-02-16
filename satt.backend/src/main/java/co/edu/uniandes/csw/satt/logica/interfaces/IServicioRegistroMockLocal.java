@@ -37,5 +37,7 @@ public interface IServicioRegistroMockLocal
      * @return regsitro Lista de ofertas
      */
     public List<RegistroSensor> darRegistros();
+    
+    public List<RegistroSensor> darRegistrosPosibleTsunami();
 
 }

@@ -43,6 +43,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         //Inicializa ofertas
         ofertas = new ArrayList<RegistroSensor>();
         ofertas.add(new RegistroSensor(-1, -1, -1, -1));
+        ofertas.add(new RegistroSensor(1, 1, 1, 1));
+        ofertas.add(new RegistroSensor(2, 2, 2, 2));
 
     }
 
