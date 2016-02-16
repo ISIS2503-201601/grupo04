@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.satt.dto;
+import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 
+import java.util.ArrayList;
 /**
  *
  * @author Alejandro
@@ -12,24 +14,23 @@ package co.edu.uniandes.csw.satt.dto;
 public class RegistroSismo {
     
     private long latitud;
-    
     private long longitud;
-    
-    private String zona;
-    
+    private ArrayList registros;
+   
     public RegistroSismo (long pLatitud, long pLongitud, String pZona)
     {
         latitud = pLatitud;
         longitud = pLongitud;
-        zona = pZona;
-             
+        registros = new ArrayList<RegistroSensor>();
     }
 
-    public long getLatitud() {
+    public long getLatitud() 
+    {
         return latitud;
     }
 
-    public void setLatitud(long latitud) {
+    public void setLatitud(long latitud) 
+    {
         this.latitud = latitud;
     }
 
@@ -41,14 +42,22 @@ public class RegistroSismo {
         this.longitud = longitud;
     }
 
-    public String getZona() {
-        return zona;
-    }
-
-    public void setZona(String zona) {
-        this.zona = zona;
+    public void agregarRegistro()
+    {
+        Procesamiento p =  new Procesamiento();
+        RegistroSensor nuevo = new RegistroSensor();
+        registros.add(nuevo);
+        p.procesarRegistro(nuevo);
     }
     
+    public void eliminarResgistro()
+    {
+        
+    }
     
+    public ArrayList darRegistros()
+    {
+        return registros;
+    }
     
 }

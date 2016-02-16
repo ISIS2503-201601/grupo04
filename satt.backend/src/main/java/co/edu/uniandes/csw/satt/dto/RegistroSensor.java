@@ -31,7 +31,8 @@ public class RegistroSensor {
     /**
      * Constructor sin argumentos de la clase
      */
-    public RegistroSensor() {
+    public RegistroSensor() 
+    {
 
     }
 
