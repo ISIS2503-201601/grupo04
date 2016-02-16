@@ -12,6 +12,7 @@ package co.edu.uniandes.csw.satt.logica.interfaces;
 
 
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
+import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -24,7 +25,7 @@ public interface IServicioRegistroMockLocal
      * Agrega un registro al sistema
      * @param registro Nuevo oferta
      */
-    public void agregarRegistro(RegistroSensor registro);
+    public void agregarRegistro(RegistroSismo registro);
 
     /**
      * Elimina un oferta del sistema

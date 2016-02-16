@@ -12,6 +12,7 @@ package co.edu.uniandes.csw.satt.logica.ejb;
 
 import co.edu.uniandes.csw.satt.persistencia.mock.ServicioPersistenciaMock;
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
+import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioPersistenciaMockLocal;
 
@@ -23,6 +24,10 @@ import javax.ejb.Stateless;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
 import java.util.Iterator;
 
+/**
+ *
+ * @author ta.barbosa10
+ */
 @Stateless
 public class ServicioRegistroMock implements IServicioRegistroMockLocal
 {
@@ -36,6 +41,8 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      */
     private IServicioPersistenciaMockLocal persistencia;
 
+    
+   private ArrayList registros;
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -45,10 +52,9 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      */
     public ServicioRegistroMock()
     {
-        persistencia=new ServicioPersistenciaMock();
-        //Inicializa el arreglo de los registros
-  
-    }
+        persistencia = new ServicioPersistenciaMock();
+        registros  = new ArrayList<RegistroSismo>();
+   }
 
     //-----------------------------------------------------------
     // Métodos
@@ -59,12 +65,12 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      * @param registro Nuevo registro
      */
  
-    @Override
-    public void agregarRegistro(RegistroSensor registro)
+    public void agregarRegistro(RegistroSismo pRegistro)
     {
         try
         {
-            persistencia.create(registro);
+            registros.add(pRegistro);
+            persistencia.create(pRegistro);
         }
         catch (OperacionInvalidaException ex)
         {
@@ -80,7 +86,16 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     @Override
     public void eliminarRegistro(long id)
     {
-        RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, id);
+        //RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, id);
+        RegistroSensor m = null;
+        for (int i = 0; i < registros.size(); i++) 
+        {
+            m = (RegistroSensor) registros.get(i);
+            if(m.getId()==id)
+            {
+                registros.remove(i);
+            } 
+        }
         try
         {
             persistencia.delete(m);
@@ -114,6 +129,9 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
         }
         return b;
     }
+
+    
+   
 
     
     

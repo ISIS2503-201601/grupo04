@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class RegistroSismo {
     
+    private long id;
     private long latitud;
     private long longitud;
     private ArrayList registros;
@@ -24,6 +25,16 @@ public class RegistroSismo {
         registros = new ArrayList<RegistroSensor>();
     }
 
+    public long getId() 
+    {
+        return id;
+    }
+    
+    public void setId(long nId)
+    {
+        this.id = nId;
+    }
+        
     public long getLatitud() 
     {
         return latitud;
@@ -50,9 +61,17 @@ public class RegistroSismo {
         p.procesarRegistro(nuevo);
     }
     
-    public void eliminarResgistro()
+    public void eliminarResgistro(long nId)
     {
-        
+        RegistroSensor m = null;
+        for (int i = 0; i < registros.size(); i++) 
+        {
+            m = (RegistroSensor) registros.get(i);
+            if(m.getId()==id)
+            {
+                registros.remove(i);
+            } 
+        }
     }
     
     public ArrayList darRegistros()
