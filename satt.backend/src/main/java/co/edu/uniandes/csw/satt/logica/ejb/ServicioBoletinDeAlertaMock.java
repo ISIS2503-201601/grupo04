@@ -140,7 +140,7 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
       
     }
     
-    public void generarBoletin(long longitud, long latitud)
+    public void generarBoletin(long longitud, long latitud, long altura, long velocidad)
     {
         
     }

@@ -45,6 +45,8 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
         boolean termino = false;
         long lat = new Long(0);
         long longi = new Long(0);
+        long alt = new Long(0);
+        long vel = new Long(0);
                 
         while(it2.hasNext() && !termino)
         {
@@ -60,13 +62,15 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
                         termino = true;
                         lat = sensorActual.getLatitud();
                         longi = sensorActual.getLongitud();
+                        alt = registroActual.getAltura();
+                        vel = registroActual.getVelocidad();
                     }
                 }
             }
         }
         
         servicioBoletin = new ServicioBoletinDeAlertaMock();
-        servicioBoletin.generarBoletin(lat, longi);
+        servicioBoletin.generarBoletin(lat, longi, alt, vel);
     }
     
 }

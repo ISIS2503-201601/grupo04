@@ -49,6 +49,6 @@ public interface IServicioBoletinDeAlertaMockLocal
     /**
      * Genera un nuevo boletin de alerta
      */
-    public void generarBoletin(long longitud, long latitud);
+    public void generarBoletin(long longitud, long latitud, long altura, long velocidad);
 
 }
