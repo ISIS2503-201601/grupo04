@@ -11,6 +11,11 @@ package co.edu.uniandes.csw.satt.dto;
  */
 public class Procesamiento 
 {
+    public Procesamiento()
+    {
+        
+    }
+    
     public void procesarRegistro(RegistroSensor m)
     {
         
