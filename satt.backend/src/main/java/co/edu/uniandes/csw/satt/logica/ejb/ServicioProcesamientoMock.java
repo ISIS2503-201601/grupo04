@@ -42,15 +42,31 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
         List<Sensor> sensores = persistencia.findAll(Sensor.class);
         Iterator<RegistroSensor> it1 = registrosSensores.iterator();
         Iterator<Sensor> it2 = sensores.iterator();
-        
-        while(it1.hasNext())
+        boolean termino = false;
+        long lat = new Long(0);
+        long longi = new Long(0);
+                
+        while(it2.hasNext() && !termino)
         {
-            //RegistroSensor registroActual = it1.next();
-            //if(registroActual)
+            
+            Sensor sensorActual = it2.next();
+            if((sensorActual.getLatitud() - registroSismo.getLatitud() < 5) && (sensorActual.getLongitud() - registroSismo.getLongitud() < 5))
+            {
+                while(it1.hasNext() && !termino)
+                {
+                    RegistroSensor registroActual = it1.next();
+                    if(registroActual.getIdSensor() == sensorActual.getId())
+                    {
+                        termino = true;
+                        lat = sensorActual.getLatitud();
+                        longi = sensorActual.getLongitud();
+                    }
+                }
+            }
         }
         
         servicioBoletin = new ServicioBoletinDeAlertaMock();
-        //servicioBoletin.agregarBoletinDeAlerta(begistro);
+        servicioBoletin.generarBoletin(lat, longi);
     }
     
 }
