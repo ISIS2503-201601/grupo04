@@ -16,6 +16,10 @@ import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import java.util.List;
 import javax.ejb.Local;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
+
 /**
  * Contrato funcional de los servicios que se le prestan al catálogo
  * @author Juan Sebastián Urrego
@@ -35,5 +39,16 @@ public interface IServicioBoletinDeAlertaMockLocal
      * @return Lista de boletines
      */
     public List<BoletinDeAlerta> darBoletinesDeAlerta();
+    
+    
+    /**
+     * Envia un correo de alerta a dgr
+     */
+    public void enviarBoletin(BoletinDeAlerta boletin);
+    
+    /**
+     * Genera un nuevo boletin de alerta
+     */
+    public void generarBoletin(long longitud, long latitud);
 
 }
