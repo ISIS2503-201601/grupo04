@@ -42,7 +42,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      */
     private IServicioPersistenciaMockLocal persistencia;
     private IServicioProcesamientoMockLocal procesamiento;
-    
+    private ArrayList registrosSensor;
    private ArrayList registrosSismos;
    
     //-----------------------------------------------------------
@@ -56,6 +56,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     {
         persistencia = new ServicioPersistenciaMock();
         procesamiento =  new ServicioProcesamientoMock();
+        registrosSensor  = new ArrayList<RegistroSensor>();
         registrosSismos  = new ArrayList<RegistroSismo>();
    }
 
@@ -72,6 +73,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     {
         try
         {
+            registrosSensor.add(pRegistro);
             persistencia.create(pRegistro);
         }
         catch (OperacionInvalidaException ex)
@@ -102,7 +104,17 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      */
     public void eliminarResgistro(long nId)
     {
-       RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, nId);
+       //RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, nId);
+        RegistroSensor m = null;
+        
+        for (int i = 0; i < registrosSismos.size(); i++) 
+        {
+            m = (RegistroSensor) registrosSismos.get(i);
+            if(m.getId()==nId)
+            {
+                registrosSismos.remove(i);
+            } 
+        }
         try
         {
             persistencia.delete(m);
@@ -120,10 +132,10 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      */
     public void eliminarRegistroSismo(long id)
     {
-        RegistroSensor m = null;
+        RegistroSismo m = null;
         for (int i = 0; i < registrosSismos.size(); i++) 
         {
-            m = (RegistroSensor) registrosSismos.get(i);
+            m = (RegistroSismo) registrosSismos.get(i);
             if(m.getId()==id)
             {
                 registrosSismos.remove(i);
