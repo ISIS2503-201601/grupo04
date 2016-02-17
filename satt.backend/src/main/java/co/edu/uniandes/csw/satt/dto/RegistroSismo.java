@@ -16,13 +16,12 @@ public class RegistroSismo {
     private long id;
     private long latitud;
     private long longitud;
-    private ArrayList registros;
+    
    
     public RegistroSismo (long pLatitud, long pLongitud, String pZona)
     {
         latitud = pLatitud;
         longitud = pLongitud;
-        registros = new ArrayList<RegistroSensor>();
     }
 
     public long getId() 
@@ -52,31 +51,4 @@ public class RegistroSismo {
     public void setLongitud(long longitud) {
         this.longitud = longitud;
     }
-
-    public void agregarRegistro()
-    {
-        Procesamiento p =  new Procesamiento();
-        RegistroSensor nuevo = new RegistroSensor();
-        registros.add(nuevo);
-        p.procesarRegistro(nuevo);
-    }
-    
-    public void eliminarResgistro(long nId)
-    {
-        RegistroSensor m = null;
-        for (int i = 0; i < registros.size(); i++) 
-        {
-            m = (RegistroSensor) registros.get(i);
-            if(m.getId()==id)
-            {
-                registros.remove(i);
-            } 
-        }
-    }
-    
-    public ArrayList darRegistros()
-    {
-        return registros;
-    }
-    
 }

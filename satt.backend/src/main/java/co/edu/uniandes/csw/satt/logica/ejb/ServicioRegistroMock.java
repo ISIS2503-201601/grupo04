@@ -42,7 +42,8 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     private IServicioPersistenciaMockLocal persistencia;
 
     
-   private ArrayList registros;
+   private ArrayList registrosSismos;
+   
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -53,7 +54,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     public ServicioRegistroMock()
     {
         persistencia = new ServicioPersistenciaMock();
-        registros  = new ArrayList<RegistroSismo>();
+        registrosSismos  = new ArrayList<RegistroSismo>();
    }
 
     //-----------------------------------------------------------
@@ -69,7 +70,6 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     {
         try
         {
-            
             persistencia.create(pRegistro);
         }
         catch (OperacionInvalidaException ex)
@@ -83,7 +83,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     {
         try
         {
-            registros.add(pRegistro);
+            registrosSismos.add(pRegistro);
             persistencia.create(pRegistro);
         }
         catch (OperacionInvalidaException ex)
@@ -94,22 +94,12 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     }
 
     /**
-     * Se elimina un registro del sistema dado su identificador único
+     * Se elimina un registro de sismo del sistema dado su identificador único
      * @param id Identificador único del registro
      */
-    @Override
-    public void eliminarRegistro(long id)
+    public void eliminarResgistro(long nId)
     {
-        //RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, id);
-        RegistroSensor m = null;
-        for (int i = 0; i < registros.size(); i++) 
-        {
-            m = (RegistroSensor) registros.get(i);
-            if(m.getId()==id)
-            {
-                registros.remove(i);
-            } 
-        }
+       RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, nId);
         try
         {
             persistencia.delete(m);
@@ -119,7 +109,34 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
             Logger.getLogger(ServicioRegistroMock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    /**
+     * Se elimina un registro de sismo del sistema dado su identificador único
+     * @param id Identificador único del registro
+     */
+    public void eliminarRegistroSismo(long id)
+    {
+        RegistroSensor m = null;
+        for (int i = 0; i < registrosSismos.size(); i++) 
+        {
+            m = (RegistroSensor) registrosSismos.get(i);
+            if(m.getId()==id)
+            {
+                registrosSismos.remove(i);
+            } 
+        }
+    }
 
+    /**
+     * Devuelve los registros de sismo del sistema
+     * @return registros Arreglo con todos los registros del sistema
+     */
+    public List<RegistroSismo> darRegistrosSismo()
+    {
+        return registrosSismos;
+    }
+    
     /**
      * Devuelve los registros del sistema
      * @return registros Arreglo con todos los registros del sistema
