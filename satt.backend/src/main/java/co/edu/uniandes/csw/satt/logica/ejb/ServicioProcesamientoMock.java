@@ -50,7 +50,7 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
         }
         
         servicioBoletin = new ServicioBoletinDeAlertaMock();
-        servicioBoletin.agregarBoletinDeAlerta(begistro);
+        //servicioBoletin.agregarBoletinDeAlerta(begistro);
     }
     
 }
