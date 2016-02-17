@@ -15,6 +15,7 @@ import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioPersistenciaMockLocal;
+import co.edu.uniandes.csw.satt.logica.interfaces.IServicioProcesamientoMockLocal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      * Interface con referencia al servicio de persistencia en el sistema
      */
     private IServicioPersistenciaMockLocal persistencia;
-
+    private IServicioProcesamientoMockLocal procesamiento;
     
    private ArrayList registrosSismos;
    
@@ -54,6 +55,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     public ServicioRegistroMock()
     {
         persistencia = new ServicioPersistenciaMock();
+        procesamiento =  new ServicioProcesamientoMock();
         registrosSismos  = new ArrayList<RegistroSismo>();
    }
 
@@ -84,6 +86,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
         try
         {
             registrosSismos.add(pRegistro);
+            procesamiento.procesarRegistro(pRegistro);
             persistencia.create(pRegistro);
         }
         catch (OperacionInvalidaException ex)
@@ -159,6 +162,11 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
             
         }
         return b;
+    }
+
+    @Override
+    public void eliminarRegistro(long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
