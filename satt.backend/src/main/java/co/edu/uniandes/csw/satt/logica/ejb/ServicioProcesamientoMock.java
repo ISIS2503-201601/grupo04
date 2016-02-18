@@ -57,7 +57,7 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
                 while(it1.hasNext() && !termino)
                 {
                     RegistroSensor registroActual = it1.next();
-                    if(registroActual.getIdSensor() == sensorActual.getId())
+                    if(registroActual.getIdSensor() == sensorActual.getId() && registroActual.getAltura() > 10)
                     {
                         termino = true;
                         lat = sensorActual.getLatitud();
