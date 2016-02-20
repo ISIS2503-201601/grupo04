@@ -10,16 +10,15 @@
 package co.edu.uniandes.csw.satt.persistencia.mock;
 
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
+import co.edu.uniandes.csw.satt.dto.RegistroSismo;
+import co.edu.uniandes.csw.satt.dto.Sensor;
 
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioPersistenciaMockLocal;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioPersistenciaMockRemote;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import javax.ejb.Stateless;
 
 
 public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote, IServicioPersistenciaMockLocal {
@@ -30,7 +29,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     /**
      * Lista con los registros de ventas
      */
-    private static ArrayList<RegistroSensor> ofertas;
+    private static ArrayList<RegistroSensor> registrosSensores;
+    
+    private static ArrayList<RegistroSismo> registrosSismo;
+    
+    private static ArrayList<Sensor> sensores;
 
     //-----------------------------------------------------------
     // Constructor
@@ -40,11 +43,20 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      */
     public ServicioPersistenciaMock() {
 
-        //Inicializa ofertas
-        ofertas = new ArrayList<RegistroSensor>();
-        ofertas.add(new RegistroSensor(-1, -1, -1, -1, "Atlantica"));
-        ofertas.add(new RegistroSensor(1, 1, 1, 1, "Atlantica"));
-        ofertas.add(new RegistroSensor(2, 2, 2, 2, "Pacifica"));
+        
+        registrosSensores = new ArrayList<RegistroSensor>();
+        registrosSensores.add(new RegistroSensor(0, 0, 0, 0));
+        registrosSensores.add(new RegistroSensor(1, 1, 1, 1));
+        registrosSensores.add(new RegistroSensor(2, 2, 2, 2));
+        
+        sensores = new ArrayList<Sensor>();
+        sensores.add(new Sensor(0, 10, 10));
+        sensores.add(new Sensor(1, 10, 10));
+        sensores.add(new Sensor(2, 10, 10));
+        
+        registrosSismo = new ArrayList<RegistroSismo>();
+        registrosSismo.add(new RegistroSismo(1, 10, 10));
+        
 
     }
 
@@ -62,10 +74,26 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         if (obj instanceof RegistroSensor) {
 
             RegistroSensor o = (RegistroSensor) obj;
-            o.setId(ofertas.size() + 1);
-            ofertas.add(o);
+            o.setId(registrosSensores.size() + 1);
+            registrosSensores.add(o);
+        }
+        
+        else if(obj instanceof RegistroSismo)
+        {
+            RegistroSismo a = (RegistroSismo) obj;
+            a.setId(registrosSismo.size() + 1);
+            registrosSismo.add(a);
+        }
+        
+        else if(obj instanceof Sensor)
+        {
+            Sensor s = (Sensor)obj;
+            s.setId(sensores.size() + 1);
+            sensores.add(s);
         }
     }
+    
+    
 
     /**
      * Permite modificar un objeto dentro de la persistencia del sistema.
@@ -115,7 +143,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public List findAll(Class c) {
         if (c.equals(RegistroSensor.class)) {
-            return ofertas;
+            return registrosSensores;
         } else {
             return null;
         }

@@ -74,7 +74,7 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
         try
         {
             persistencia.create(boletin);
-            enviarBoletin(boletin);
+            //enviarBoletin(boletin);
         }
         catch (OperacionInvalidaException ex)
         {
@@ -97,10 +97,10 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
     {
         System.out.println("Enviando");
       // Recipient's email ID needs to be mentioned.
-      String to = "f.cueto10@uniandes.edu.co";
+      String to = "a.salamanca10@uniandes.edu.co";
 
       // Sender's email ID needs to be mentioned
-      String from = "f.cueto10@uniandes.edu.co";
+      String from = "a.salamanca10@uniandes.edu.co";
 
       // Assuming you are sending email from localhost
       String host = "localhost";

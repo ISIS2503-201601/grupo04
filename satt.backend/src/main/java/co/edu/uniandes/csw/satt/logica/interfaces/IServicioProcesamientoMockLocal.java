@@ -13,5 +13,5 @@ import co.edu.uniandes.csw.satt.dto.RegistroSismo;
  */
 public interface IServicioProcesamientoMockLocal {
     
-    public void procesarRegistro (RegistroSismo r);
+    public void procesarRegistro (RegistroSismo r, IServicioPersistenciaMockLocal p);
 }

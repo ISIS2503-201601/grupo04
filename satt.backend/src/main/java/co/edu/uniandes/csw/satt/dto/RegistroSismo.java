@@ -18,10 +18,11 @@ public class RegistroSismo {
     private long longitud;
     
    
-    public RegistroSismo (long pLatitud, long pLongitud, String pZona)
+    public RegistroSismo (long pid, long pLatitud, long pLongitud)
     {
         latitud = pLatitud;
         longitud = pLongitud;
+        id = pid;
     }
 
     public long getId() 

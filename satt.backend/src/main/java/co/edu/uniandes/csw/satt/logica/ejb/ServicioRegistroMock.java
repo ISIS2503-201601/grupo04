@@ -88,8 +88,10 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
         try
         {
             registrosSismos.add(pRegistro);
-            procesamiento.procesarRegistro(pRegistro);
             persistencia.create(pRegistro);
+            
+            procesamiento.procesarRegistro(pRegistro, persistencia);
+            
         }
         catch (OperacionInvalidaException ex)
         {

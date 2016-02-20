@@ -23,7 +23,6 @@ public class RegistroSensor {
 
     private long idSensor;
     
-    private String zona;
 
     //-----------------------------------------------------------
     // Constructores
@@ -36,21 +35,15 @@ public class RegistroSensor {
 
     }
 
-    public RegistroSensor(long id, long altura, long velocidad, long idSensor, String pZona) {
+    public RegistroSensor(long id, long altura, long velocidad, long idSensor) {
         this.id = id;
         this.altura = altura;
         this.velocidad = velocidad;
         this.idSensor = idSensor;
-        this.zona = pZona;
+        
     }
 
-    public String getZona() {
-        return zona;
-    }
-
-    public void setZona(String zona) {
-        this.zona = zona;
-    }
+    
 
     //-----------------------------------------------------------
     // Getters y setters

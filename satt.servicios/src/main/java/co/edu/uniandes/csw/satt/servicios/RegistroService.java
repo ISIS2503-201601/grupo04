@@ -56,6 +56,15 @@ public class RegistroService {
      *
      * @param mb registro en formato JSON, que automáticamente se parsea a un objeto Registro por el API REST.
      */
+    /*@POST
+    @Path("agregarRegistroSismo/")
+    public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
+        System.out.println(mb);
+        for (RegistroSismo registro : mb) {
+            registroEjb.agregarRegistroSismo(registro);
+        }
+        return mb;
+    }*/
     @POST
     @Path("agregar/")
 
@@ -67,11 +76,6 @@ public class RegistroService {
         return mb;
     }
     
-    public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
-        for (RegistroSismo registro : mb) {
-            registroEjb.agregarRegistroSismo(registro);
-        }
-        return mb;
-    }
+    
  
 }

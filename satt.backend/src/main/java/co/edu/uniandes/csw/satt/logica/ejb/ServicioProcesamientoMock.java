@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.satt.logica.ejb;
 
+import co.edu.uniandes.csw.satt.dto.BoletinDeAlerta;
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import co.edu.uniandes.csw.satt.dto.Sensor;
@@ -34,10 +35,10 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
        
     }
     
-    public void procesarRegistro (RegistroSismo r)
+    public void procesarRegistro (RegistroSismo r, IServicioPersistenciaMockLocal p)
     {
         registroSismo = r;
-        
+        persistencia = p;
         List<RegistroSensor> registrosSensores = persistencia.findAll(RegistroSensor.class);
         List<Sensor> sensores = persistencia.findAll(Sensor.class);
         Iterator<RegistroSensor> it1 = registrosSensores.iterator();
@@ -52,12 +53,12 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
         {
             
             Sensor sensorActual = it2.next();
-            if((sensorActual.getLatitud() - registroSismo.getLatitud() < 5) && (sensorActual.getLongitud() - registroSismo.getLongitud() < 5))
+            if((sensorActual.getLatitud() == registroSismo.getLatitud()) && (sensorActual.getLongitud() == registroSismo.getLongitud()))
             {
                 while(it1.hasNext() && !termino)
                 {
                     RegistroSensor registroActual = it1.next();
-                    if(registroActual.getIdSensor() == sensorActual.getId() && registroActual.getAltura() > 10)
+                    if(registroActual.getIdSensor() == sensorActual.getId() && registroActual.getAltura() == 10)
                     {
                         termino = true;
                         lat = sensorActual.getLatitud();
@@ -68,9 +69,10 @@ public class ServicioProcesamientoMock implements IServicioProcesamientoMockLoca
                 }
             }
         }
-        
+        System.out.println("FUNCIONO, aca esta la info :" + lat+ longi +alt +vel);
         servicioBoletin = new ServicioBoletinDeAlertaMock();
         servicioBoletin.generarBoletin(lat, longi, alt, vel);
+        servicioBoletin.enviarBoletin(new BoletinDeAlerta(1, "blabla", "mi casa", vel, alt));
     }
     
 }
