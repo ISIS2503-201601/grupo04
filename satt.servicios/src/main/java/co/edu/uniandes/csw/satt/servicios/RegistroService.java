@@ -77,5 +77,13 @@ public class RegistroService {
     }
     
     
+    @POST
+    @Path("reportarSismo/")
+    public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
+        for (RegistroSismo registro : mb) {
+            registroEjb.agregarRegistroSismo(registro);
+        }
+        return mb;
+    }
  
 }

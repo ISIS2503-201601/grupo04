@@ -142,7 +142,55 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
     
     public void generarBoletin(long longitud, long latitud, long altura, long velocidad)
     {
+        BoletinDeAlerta nuevo = new BoletinDeAlerta();
         
+        //Altura
+        nuevo.setAlturaDeLaOla(altura);
+        
+        //Perfil
+        String perfil ="Bajo";
+        
+        if(altura>10)perfil="Alto";
+        else if(altura>5)perfil = "Medio";
+        
+        nuevo.setPerfil(perfil);
+        
+        //Tiempo de llegada
+        if(longitud > -77&&latitud>7)
+        {
+            //Caribe
+            long tiempo = ((latitud-12)*110574)/velocidad;
+            nuevo.setTiempoDeLlegada(tiempo);
+        }
+        else
+        {
+            //Pacifico
+            long tiempo = ((longitud+78)*110574)/velocidad;
+            nuevo.setTiempoDeLlegada(tiempo);
+        }
+        
+        //Zona geografica
+        String zona = "";
+        if(longitud > -77&&latitud>7)
+        {
+            //Caribe
+            if(longitud > -73)zona = "guajira";
+            else if(longitud>-74)zona ="magdalena";
+            else if(longitud>-75)zona ="sucre";
+            else if(longitud>-76)zona = "cordoba";
+            else if(longitud>-77)zona = "Antioqia";
+        }
+        else
+        {
+            //Pacifico
+            if(latitud >6)zona = "guajira";
+            else if(latitud>4)zona ="magdalena";
+            else if(latitud>2)zona ="sucre";
+            else if(latitud>0)zona ="sucre";
+        }
+        nuevo.setZonaGeografica(zona);
+        
+        agregarBoletinDeAlerta(nuevo);
     }
 
     
