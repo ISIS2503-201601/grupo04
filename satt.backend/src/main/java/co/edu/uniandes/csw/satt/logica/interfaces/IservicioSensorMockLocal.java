@@ -7,12 +7,14 @@ package co.edu.uniandes.csw.satt.logica.interfaces;
 
 import co.edu.uniandes.csw.satt.dto.Sensor;
 import java.util.List;
+import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Alejandro
  */
-public interface IservicioSensorMockLocal {
+public interface IServicioSensorMockLocal {
     
     public void agregarSensor(Sensor s);
     
