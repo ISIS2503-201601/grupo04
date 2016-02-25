@@ -6,8 +6,8 @@
 
 package co.edu.uniandes.csw.satt.servicios;
 
-import co.edu.uniandes.csw.satt.dto.BoletinDeAlerta;
-import co.edu.uniandes.csw.satt.dto.RegistroSensor;
+
+import co.edu.uniandes.csw.satt.dto.Sensor;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioBoletinDeAlertaMockLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -19,18 +19,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
+import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
  
-@Path("/Boletin")
+@Path("/Sensor")
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class BoletinDeAlertaService {
+public class SensorService {
  
     /**
      * Referencia al Ejb del catalogo encargada de realizar las operaciones del mismo.
      */
     @EJB
-    private IServicioBoletinDeAlertaMockLocal registroEjb;
+    private IServicioSensorMockLocal registroEjb;
    
  
     /**
@@ -39,24 +40,24 @@ public class BoletinDeAlertaService {
   
      */
     @GET
-    @Path("boletines/")
-    public List<BoletinDeAlerta> getTodasLasRegistros() {
-        System.out.println("temp");
-        return registroEjb.darBoletinesDeAlerta();
+    @Path("sensores/")
+    public List<Sensor> getTodasLasRegistros() {
+        return registroEjb.darSensores();
  
     }
     
     /**
-     * Servicio que recibe un objeto JSON con una registro que se desea agregar a la lista de registros.
+     * Servicio que recibe un objeto JSON con una sensor que se desea agregar a la lista de registros.
      *
-     * @param mb registro en formato JSON, que automáticamente se parsea a un objeto BoletinDeAlerta por el API REST.
+     * @param mb registro en formato JSON, que automáticamente se parsea a un objeto Sensor por el API REST.
      */
     @POST
     @Path("agregar/")
 
-    public List<BoletinDeAlerta> agregarRegistros(List<BoletinDeAlerta> mb) {
-        for (BoletinDeAlerta boletin : mb) {
-            registroEjb.agregarBoletinDeAlerta(boletin);
+    public List<Sensor> agregarRegistros(List<Sensor> mb) {
+        for (Sensor sensor : mb) {
+            registroEjb.agregarSensor(sensor);
+            
         }
         
         return mb;

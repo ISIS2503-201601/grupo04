@@ -9,6 +9,7 @@
  */
 package co.edu.uniandes.csw.satt.persistencia.mock;
 
+import co.edu.uniandes.csw.satt.dto.BoletinDeAlerta;
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import co.edu.uniandes.csw.satt.dto.Sensor;
@@ -34,6 +35,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     private static ArrayList<RegistroSismo> registrosSismo;
     
     private static ArrayList<Sensor> sensores;
+    
+    private static ArrayList<BoletinDeAlerta> boletines;
 
     //-----------------------------------------------------------
     // Constructor
@@ -86,6 +89,12 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         }
         
         else if(obj instanceof Sensor)
+        {
+            Sensor s = (Sensor)obj;
+            s.setId(sensores.size() + 1);
+            sensores.add(s);
+        }
+                else if(obj instanceof Sensor)
         {
             Sensor s = (Sensor)obj;
             s.setId(sensores.size() + 1);
@@ -144,6 +153,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     public List findAll(Class c) {
         if (c.equals(RegistroSensor.class)) {
             return registrosSensores;
+        } else if (c.equals(Sensor.class)) {
+            return sensores;
         } else {
             return null;
         }

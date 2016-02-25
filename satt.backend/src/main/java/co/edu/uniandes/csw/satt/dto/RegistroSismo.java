@@ -16,14 +16,18 @@ public class RegistroSismo {
     private long id;
     private long latitud;
     private long longitud;
-    
-   
+
+    public RegistroSismo() {
+    }
+
     public RegistroSismo (long pid, long pLatitud, long pLongitud)
     {
         latitud = pLatitud;
         longitud = pLongitud;
         id = pid;
     }
+    
+    
 
     public long getId() 
     {

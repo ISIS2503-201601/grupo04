@@ -14,9 +14,12 @@ public class Sensor {
     private long id;
     
     private long latitud;
-    
+
     private long longitud;
-    
+
+    public Sensor() {
+    }
+
     public Sensor(long pId, long pLat, long pLong)
     {
         id = pId;

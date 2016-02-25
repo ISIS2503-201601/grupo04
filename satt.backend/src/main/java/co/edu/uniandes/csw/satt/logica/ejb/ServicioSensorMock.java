@@ -8,17 +8,17 @@ package co.edu.uniandes.csw.satt.logica.ejb;
 import co.edu.uniandes.csw.satt.dto.Sensor;
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioPersistenciaMockLocal;
-import co.edu.uniandes.csw.satt.logica.interfaces.IservicioSensorMockLocal;
 import co.edu.uniandes.csw.satt.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
 /**
  *
  * @author Alejandro
  */
-public class ServicioSensorMock implements IservicioSensorMockLocal{
+public class ServicioSensorMock implements IServicioSensorMockLocal{
     
     private IServicioPersistenciaMockLocal persistencia;
     

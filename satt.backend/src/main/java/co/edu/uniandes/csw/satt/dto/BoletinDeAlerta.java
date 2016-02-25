@@ -12,7 +12,7 @@ package co.edu.uniandes.csw.satt.dto;
 /**
  * Clase que representa la información de un mueble en el sistema
  *
- * @author Juan Sebastián Urrego
+ * @author 
  */
 public class BoletinDeAlerta {
 
