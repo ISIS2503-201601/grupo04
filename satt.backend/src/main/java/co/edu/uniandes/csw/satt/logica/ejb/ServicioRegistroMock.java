@@ -163,20 +163,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
         return persistencia.findAll(RegistroSensor.class);
     }
     
-    public List<RegistroSensor> darRegistrosPosibleTsunami()
-    {
-        List a = persistencia.findAll(RegistroSensor.class);
-        List<RegistroSensor> b = new ArrayList<RegistroSensor>();
-        Iterator<RegistroSensor> i = a.iterator();
-        while(i.hasNext())
-        {
-            RegistroSensor actual = i.next();
-            if(actual.getAltura() > 0)
-                b.add(actual);
-            
-        }
-        return b;
-    }
+    
 
     @Override
     public void eliminarRegistro(long id) {

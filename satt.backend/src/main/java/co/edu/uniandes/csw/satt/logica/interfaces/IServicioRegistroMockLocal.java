@@ -45,6 +45,6 @@ public interface IServicioRegistroMockLocal
      */
     public List<RegistroSensor> darRegistros();
     
-    public List<RegistroSensor> darRegistrosPosibleTsunami();
+    
 
 }

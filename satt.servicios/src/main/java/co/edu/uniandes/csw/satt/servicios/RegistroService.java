@@ -44,27 +44,12 @@ public class RegistroService {
  
     }
     
-    @GET
-    @Path("registrosPosibleTsunami/")
-    public List<RegistroSensor> getTodasLasRegistrosPosibleTsunami() {
-        return registroEjb.darRegistrosPosibleTsunami();
- 
-    }
     
     /**
      * Servicio que recibe un objeto JSON con una registro que se desea agregar a la lista de registros.
      *
      * @param mb registro en formato JSON, que automáticamente se parsea a un objeto Registro por el API REST.
      */
-    /*@POST
-    @Path("agregarRegistroSismo/")
-    public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
-        System.out.println(mb);
-        for (RegistroSismo registro : mb) {
-            registroEjb.agregarRegistroSismo(registro);
-        }
-        return mb;
-    }*/
     @POST
     @Path("agregar/")
 
@@ -80,8 +65,9 @@ public class RegistroService {
     @POST
     @Path("reportarSismo/")
     public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
-        for (RegistroSismo registro : mb) {
-            registroEjb.agregarRegistroSismo(registro);
+        for (RegistroSismo reg : mb) {
+            System.out.println(reg.getId() + reg.getLatitud() + reg.getLongitud());
+            registroEjb.agregarRegistroSismo(reg);
         }
         return mb;
     }

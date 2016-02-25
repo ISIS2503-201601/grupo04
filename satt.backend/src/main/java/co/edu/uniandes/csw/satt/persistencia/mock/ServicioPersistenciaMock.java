@@ -55,7 +55,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         sensores.add(new Sensor(2, 10, 10));
         
         registrosSismo = new ArrayList<RegistroSismo>();
-        registrosSismo.add(new RegistroSismo(1, 10, 10));
+        registrosSismo.add(new RegistroSismo(1, 5, 5));
         
 
     }
