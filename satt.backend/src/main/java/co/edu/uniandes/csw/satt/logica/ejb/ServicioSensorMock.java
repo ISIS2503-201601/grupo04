@@ -14,10 +14,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
+import javax.ejb.Stateless;
 /**
  *
  * @author Alejandro
  */
+@Stateless
 public class ServicioSensorMock implements IServicioSensorMockLocal{
     
     private IServicioPersistenciaMockLocal persistencia;

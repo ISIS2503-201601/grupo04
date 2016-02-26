@@ -48,9 +48,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
 
         
         registrosSensores = new ArrayList<RegistroSensor>();
-        registrosSensores.add(new RegistroSensor(0, 0, 0, 0));
-        registrosSensores.add(new RegistroSensor(1, 1, 1, 1));
-        registrosSensores.add(new RegistroSensor(2, 2, 2, 2));
+        registrosSensores.add(new RegistroSensor(0, 10, 10, 0));
+        registrosSensores.add(new RegistroSensor(1, 10, 10, 1));
+        registrosSensores.add(new RegistroSensor(2, 10, 10, 2));
         
         sensores = new ArrayList<Sensor>();
         sensores.add(new Sensor(0, 10, 10));
