@@ -8,20 +8,54 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 package co.edu.uniandes.csw.satt.dto;
+import org.eclipse.persistence.nosql.annotations.DataFormatType;
+import org.eclipse.persistence.nosql.annotations.Field;
+import org.eclipse.persistence.nosql.annotations.NoSql;
+ 
+import java.io.Serializable;
+import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@NoSql(dataFormat=DataFormatType.MAPPED)
+@Entity
+@XmlRootElement
+public class RegistroSensor implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
-public class RegistroSensor {
-
+    @Id
+    @GeneratedValue
+    @Field(name="_id")
+    private String id;
+ 
+    @NotNull
+    @Column(name = "create_at", updatable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar createdAt;
+ 
+    @NotNull
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.DATE)
+     private Calendar updatedAt;
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-    private long id;
 
     private long altura;
 
     private long velocidad;
 
-    private long idSensor;
+    private String idSensor;
     
 
     //-----------------------------------------------------------
@@ -35,24 +69,24 @@ public class RegistroSensor {
 
     }
 
-    public RegistroSensor(long id, long altura, long velocidad, long idSensor) {
-        this.id = id;
-        this.altura = altura;
-        this.velocidad = velocidad;
-        this.idSensor = idSensor;
-        
+    @PreUpdate
+    private void updateTimestamp() {
+        this.updatedAt = Calendar.getInstance();
     }
-
-    
-
+ 
+    @PrePersist
+    private void creationTimestamp() {
+        this.createdAt = this.updatedAt = Calendar.getInstance();
+    }
+   
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -72,11 +106,11 @@ public class RegistroSensor {
         this.velocidad = velocidad;
     }
 
-    public long getIdSensor() {
+    public String getIdSensor() {
         return idSensor;
     }
 
-    public void setIdSensor(long idSensor) {
+    public void setIdSensor(String idSensor) {
         this.idSensor = idSensor;
     }
 

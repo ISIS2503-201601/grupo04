@@ -10,7 +10,7 @@
 
 package co.edu.uniandes.csw.satt.logica.ejb;
 
-import co.edu.uniandes.csw.satt.persistencia.mock.ServicioPersistenciaMock;
+
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
@@ -49,17 +49,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     // Constructor
     //-----------------------------------------------------------
 
-    /**
-     * Constructor sin argumentos de la clase
-     */
-    public ServicioRegistroMock()
-    {
-        persistencia = new ServicioPersistenciaMock();
-        procesamiento =  new ServicioProcesamientoMock();
-        registrosSensor  = new ArrayList<RegistroSensor>();
-        registrosSismos  = new ArrayList<RegistroSismo>();
-   }
-
+ 
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
@@ -104,7 +94,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
      * Se elimina un registro de sismo del sistema dado su identificador único
      * @param id Identificador único del registro
      */
-    public void eliminarResgistro(long nId)
+    public void eliminarResgistro(String nId)
     {
        //RegistroSensor m=(RegistroSensor) persistencia.findById(RegistroSensor.class, nId);
         RegistroSensor m = null;
@@ -112,7 +102,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
         for (int i = 0; i < registrosSismos.size(); i++) 
         {
             m = (RegistroSensor) registrosSismos.get(i);
-            if(m.getId()==nId)
+            if(m.getId().equals(nId))
             {
                 registrosSismos.remove(i);
             } 

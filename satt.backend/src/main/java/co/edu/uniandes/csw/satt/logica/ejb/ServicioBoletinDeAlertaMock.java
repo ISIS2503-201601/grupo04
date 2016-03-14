@@ -11,7 +11,7 @@
 package co.edu.uniandes.csw.satt.logica.ejb;
 
 import co.edu.uniandes.csw.satt.dto.BoletinDeAlerta;
-import co.edu.uniandes.csw.satt.persistencia.mock.ServicioPersistenciaMock;
+
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioBoletinDeAlertaMockLocal;
@@ -48,16 +48,6 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
-
-    /**
-     * Constructor sin argumentos de la clase
-     */
-    public ServicioBoletinDeAlertaMock()
-    {
-        persistencia=new ServicioPersistenciaMock();
-        //Inicializa el arreglo de los registros
-  
-    }
 
     //-----------------------------------------------------------
     // Métodos
