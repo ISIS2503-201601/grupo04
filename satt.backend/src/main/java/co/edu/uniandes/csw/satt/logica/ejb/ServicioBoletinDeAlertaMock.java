@@ -74,7 +74,6 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
         try
         {
             persistencia.create(boletin);
-            //enviarBoletin(boletin);
         }
         catch (OperacionInvalidaException ex)
         {

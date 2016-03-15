@@ -94,7 +94,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             sensores.add(s);
         } else if (obj instanceof BoletinDeAlerta) {
             BoletinDeAlerta s = (BoletinDeAlerta) obj;
-            s.setId(sensores.size() + 1);
+            s.setId(boletines.size() + 1);
             boletines.add(s);
         }
     }
