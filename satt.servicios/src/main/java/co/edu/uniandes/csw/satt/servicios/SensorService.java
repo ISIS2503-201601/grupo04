@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.satt.servicios;
 
 
 import co.edu.uniandes.csw.satt.dto.Sensor;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioBoletinDeAlertaMockLocal;
+import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -18,8 +18,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
+
  
 @Path("/Sensor")
 @Stateless
