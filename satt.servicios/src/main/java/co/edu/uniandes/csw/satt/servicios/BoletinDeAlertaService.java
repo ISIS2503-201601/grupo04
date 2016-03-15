@@ -42,7 +42,6 @@ public class BoletinDeAlertaService {
     @Path("boletines/")
     public List<BoletinDeAlerta> getTodosLosBoletines() {
         return boletinesEjb.darBoletinesDeAlerta();
- 
     }
     
     /**
@@ -59,9 +58,6 @@ public class BoletinDeAlertaService {
         
         return mb;
     }
-    
-    
-     
     /**
      * Servicio que ofrece un JSON con el boletin buscado por id
      * @return el bojeto json apropiado
