@@ -90,12 +90,34 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
      */
     public List<BoletinDeAlerta> darBoletinesDeAlerta()
     {
-        return persistencia.findAll(RegistroSensor.class);
+        return persistencia.findAll(BoletinDeAlerta.class);
+    }
+    
+        /**
+     * Remueve un ejemplar del mueble (no el mueble)
+     * @param id Identificador único del mueble
+     */
+    @Override
+    public BoletinDeAlerta getBoletinDeAlertaPorId(long id)
+    {
+        ArrayList<BoletinDeAlerta>muebles=(ArrayList<BoletinDeAlerta>) persistencia.findAll(BoletinDeAlerta.class);
+        BoletinDeAlerta boletinDeAlerta;
+        for (int i = 0; i < muebles.size(); i++)
+        {
+            boletinDeAlerta = muebles.get(i);
+            if(boletinDeAlerta.getId()==id)
+            {
+                return boletinDeAlerta;
+            }
+        }
+        
+        return null;
     }
     
     public void enviarBoletin(BoletinDeAlerta boletin)
     {
         System.out.println("Enviando");
+       /** 
       // Recipient's email ID needs to be mentioned.
       String to = "a.salamanca10@uniandes.edu.co";
 
@@ -136,7 +158,7 @@ public class ServicioBoletinDeAlertaMock implements IServicioBoletinDeAlertaMock
          System.out.println("Sent message successfully....");
       }catch (MessagingException mex) {
          mex.printStackTrace();
-      }
+      }*/
       
     }
     

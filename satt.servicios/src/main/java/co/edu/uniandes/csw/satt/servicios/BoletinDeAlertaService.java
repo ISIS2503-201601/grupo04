@@ -19,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
+import javax.ws.rs.QueryParam;
  
 @Path("/Boletin")
 @Stateless
@@ -30,19 +31,17 @@ public class BoletinDeAlertaService {
      * Referencia al Ejb del catalogo encargada de realizar las operaciones del mismo.
      */
     @EJB
-    private IServicioBoletinDeAlertaMockLocal registroEjb;
+    private IServicioBoletinDeAlertaMockLocal boletinesEjb;
    
  
     /**
      * Servicio que ofrece una lista JSON con el catálogo de registros de los alpes 
      * @return la lista JSON con los Registros de MDLA.
-  
      */
     @GET
     @Path("boletines/")
-    public List<BoletinDeAlerta> getTodasLasRegistros() {
-        System.out.println("temp");
-        return registroEjb.darBoletinesDeAlerta();
+    public List<BoletinDeAlerta> getTodosLosBoletines() {
+        return boletinesEjb.darBoletinesDeAlerta();
  
     }
     
@@ -53,13 +52,24 @@ public class BoletinDeAlertaService {
      */
     @POST
     @Path("agregar/")
-
-    public List<BoletinDeAlerta> agregarRegistros(List<BoletinDeAlerta> mb) {
+    public List<BoletinDeAlerta> agregarBoletines(List<BoletinDeAlerta> mb) {
         for (BoletinDeAlerta boletin : mb) {
-            registroEjb.agregarBoletinDeAlerta(boletin);
+            boletinesEjb.agregarBoletinDeAlerta(boletin);
         }
         
         return mb;
+    }
+    
+    
+     
+    /**
+     * Servicio que ofrece un JSON con el boletin buscado por id
+     * @return el bojeto json apropiado
+     */
+    @GET
+    @Path("boletin/")
+    public BoletinDeAlerta getUnRegistro(@QueryParam("id") long id) {
+        return boletinesEjb.getBoletinDeAlertaPorId(id);
     }
  
 }

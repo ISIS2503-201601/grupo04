@@ -60,6 +60,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         registrosSismo = new ArrayList<RegistroSismo>();
         registrosSismo.add(new RegistroSismo(1, 5, 5));
         
+        boletines = new ArrayList<BoletinDeAlerta>();
+        boletines.add(new BoletinDeAlerta(1,"1","1",1,1));
 
     }
 
@@ -86,19 +88,14 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             RegistroSismo a = (RegistroSismo) obj;
             a.setId(registrosSismo.size() + 1);
             registrosSismo.add(a);
-        }
-        
-        else if(obj instanceof Sensor)
-        {
-            Sensor s = (Sensor)obj;
+        } else if (obj instanceof Sensor) {
+            Sensor s = (Sensor) obj;
             s.setId(sensores.size() + 1);
             sensores.add(s);
-        }
-                else if(obj instanceof Sensor)
-        {
-            Sensor s = (Sensor)obj;
+        } else if (obj instanceof BoletinDeAlerta) {
+            BoletinDeAlerta s = (BoletinDeAlerta) obj;
             s.setId(sensores.size() + 1);
-            sensores.add(s);
+            boletines.add(s);
         }
     }
     
@@ -155,6 +152,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             return registrosSensores;
         } else if (c.equals(Sensor.class)) {
             return sensores;
+        } else if (c.equals(BoletinDeAlerta.class)) {
+            return boletines;
         } else {
             return null;
         }

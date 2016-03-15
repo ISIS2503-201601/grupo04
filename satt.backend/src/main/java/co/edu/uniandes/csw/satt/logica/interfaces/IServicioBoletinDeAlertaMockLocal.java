@@ -40,6 +40,12 @@ public interface IServicioBoletinDeAlertaMockLocal
      */
     public List<BoletinDeAlerta> darBoletinesDeAlerta();
     
+    /**
+     * Devuelve un boletin de alerta a partir de su id
+     * @param id del boletin buscado
+     * @return El boletin buscado, null si no existe
+     */
+    public BoletinDeAlerta getBoletinDeAlertaPorId(long id);    
     
     /**
      * Envia un correo de alerta a dgr
