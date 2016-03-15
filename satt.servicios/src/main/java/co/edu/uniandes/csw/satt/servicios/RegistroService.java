@@ -18,40 +18,29 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
-import co.edu.uniandes.csw.satt.persistencia.mock.PersistenceManager;
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import org.json.simple.JSONObject;
-
  
 @Path("/Registro")
+@Stateless
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RegistroService {
  
-    @PersistenceContext(unitName = "mongoPU")
-    EntityManager entityManager;
-
-    @PostConstruct
-    public void init() {
-        try {
-            entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } 
+    /**
+     * Referencia al Ejb del catalogo encargada de realizar las operaciones del mismo.
+     */
+    @EJB
+    private IServicioRegistroMockLocal registroEjb;
     
+    /**
+     * Servicio que ofrece una lista JSON con el catálogo de registros de los alpes 
+     * @return la lista JSON con los Registros de MDLA.
+  
+     */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-
-        Query q = entityManager.createQuery("select u from Competitor u order by u.surname ASC");
-        List<RegistroSensor> registrosSensores = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(registrosSensores).build();
+    @Path("registros/")
+    public List<RegistroSensor> getTodasLasRegistros() {
+        return registroEjb.darRegistros();
+ 
     }
     
     
@@ -60,40 +49,16 @@ public class RegistroService {
      *
      * @param mb registro en formato JSON, que automáticamente se parsea a un objeto Registro por el API REST.
      */
-         
     @POST
-    @Produces(MediaType.APPLICATION_JSON)    
-    public Response agregarRegistros(RegistroSensor sensor) {
-        RegistroSensor c = new RegistroSensor();
-        JSONObject rta = new JSONObject();
-        c.setAltura(sensor.getAltura());
-        c.setVelocidad(sensor.getVelocidad());
-        c.setIdSensor(sensor.getIdSensor());
+    @Path("agregar/")
 
-       try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(c);
-            entityManager.getTransaction().commit();
-            entityManager.refresh(c);
-            rta.put("registroSensor_id", c.getId());
-        } catch (Throwable t) {
-            t.printStackTrace();
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            c = null;
-        } finally {
-        	entityManager.clear();
-        	entityManager.close();
+    public List<RegistroSensor> agregarRegistros(List<RegistroSensor> mb) {
+        for (RegistroSensor registro : mb) {
+            registroEjb.agregarRegistro(registro);
         }
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta.toJSONString()).build();
-
+        
+        return mb;
     }
-
-      @OPTIONS
-      public Response cors(@javax.ws.rs.core.Context HttpHeaders requestHeaders) {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").header("Access-Control-Allow-Headers", "AUTHORIZATION, content-type, accept").build();
-      } 
     
     
     @POST
@@ -101,7 +66,7 @@ public class RegistroService {
     public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
         for (RegistroSismo reg : mb) {
             System.out.println(reg.getId() + reg.getLatitud() + reg.getLongitud());
-            //registroEjb.agregarRegistroSismo(reg);
+            registroEjb.agregarRegistroSismo(reg);
         }
         return mb;
     }

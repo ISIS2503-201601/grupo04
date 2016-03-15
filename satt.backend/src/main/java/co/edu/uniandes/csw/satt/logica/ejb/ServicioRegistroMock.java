@@ -43,7 +43,7 @@ public class ServicioRegistroMock implements IServicioRegistroMockLocal
     private IServicioPersistenciaMockLocal persistencia;
     private IServicioProcesamientoMockLocal procesamiento;
     private ArrayList registrosSensor;
-   private ArrayList registrosSismos;
+    private ArrayList registrosSismos;
    
     //-----------------------------------------------------------
     // Constructor
