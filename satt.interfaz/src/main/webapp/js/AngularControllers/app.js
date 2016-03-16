@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var aplicacionMundial= angular.module('aplicacionMundial',[]);
+(function(){var aplicacionMundial= angular.module('aplicacionMundial',[]);
 
-aplicacionMundial.directive('toolbar', function(){
+    aplicacionMundial.directive('toolbar', function(){
         return{
             restrict:'E',
             templateUrl: 'partials/toolbar.html',
@@ -58,4 +58,23 @@ aplicacionMundial.directive('crearRegistroSismico', function(){
                 $scope.toolbar.selectTab(2);
             });
         };
-    }); 
+    });
+    
+    aplicacionMundial.directive('sensores', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/sensores.html',
+            controller: 'darSensores'
+        };
+    });
+ 
+    aplicacionMundial.controller("darSensores", function($http, $scope) {
+        $http.get('http://localhost:8080/satt.servicios/webresources/Sensor/sensores').
+        success(function(data, status, headers, config) {
+        $scope.competitors = data;
+        }).
+        error(function(data, status, headers, config) {
+          // log error
+        });
+    });
+})();
