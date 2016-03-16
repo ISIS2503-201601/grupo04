@@ -17,7 +17,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">4000</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">60</stringProp>
         <longProp name="ThreadGroup.start_time">1454959459000</longProp>
         <longProp name="ThreadGroup.end_time">1454959459000</longProp>
@@ -31,7 +31,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">[{&quot;id&quot;:1,&quot;altura&quot;:120,&quot;velocidad&quot;:30,&quot;idSensor&quot;:7,&quot;zona&quot;:&quot;sur&quot;}]</stringProp>
+                <stringProp name="Argument.value">[{&quot;id&quot;:1,&quot;altura&quot;:120,&quot;velocidad&quot;:30,&quot;idSensor&quot;:7}]</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
               </elementProp>
