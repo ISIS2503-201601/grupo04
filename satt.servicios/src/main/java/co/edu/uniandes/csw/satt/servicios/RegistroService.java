@@ -9,7 +9,6 @@ package co.edu.uniandes.csw.satt.servicios;
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
 import co.edu.uniandes.csw.satt.dto.RegistroSismo;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,7 +16,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
+import co.edu.uniandes.csw.satt.persistencia.mock.Master;
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
  
 @Path("/Registro")
 @Stateless
@@ -26,11 +27,23 @@ import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
 public class RegistroService {
  
     /**
-     * Referencia al Ejb del catalogo encargada de realizar las operaciones del mismo.
-     */
-    @EJB
-    private IServicioRegistroMockLocal registroEjb;
-   
+	 * Atributo que usa la anotaciÃ³n @Context para tener el ServletContext de la conexiÃ³n actual.
+	 */
+	@Context
+	private ServletContext context;
+
+	/**
+	 * MÃ©todo que retorna el path de la carpeta WEB-INF/ConnectionData en el deploy actual dentro del servidor.
+	 * @return path de la carpeta WEB-INF/ConnectionData en el deploy actual.
+	 */
+	private String getPath() {
+		return context.getRealPath("WEB-INF/ConnectionData");
+	}
+	
+	
+	private String doErrorMessage(Exception e){
+		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
+	}
  
     /**
      * Servicio que ofrece una lista JSON con el catálogo de registros de los alpes 
@@ -40,7 +53,13 @@ public class RegistroService {
     @GET
     @Path("registros/")
     public List<RegistroSensor> getTodasLasRegistros() {
-        return registroEjb.darRegistros();
+        Master tm = new Master(getPath());
+        
+        try {
+                return tm.darRegistrosSensores();
+        } catch (Exception e) {
+            return null;
+        }
  
     }
     
@@ -54,9 +73,17 @@ public class RegistroService {
     @Path("agregar/")
 
     public List<RegistroSensor> agregarRegistros(List<RegistroSensor> mb) {
-        for (RegistroSensor registro : mb) {
-            registroEjb.agregarRegistro(registro);
-        }
+        Master tm = new Master(getPath());
+        
+        for (RegistroSensor reg : mb) {
+            
+            try 
+            {
+                tm.agregarRegistroSensor(reg);
+            } catch (Exception e) {
+                System.out.println("co.edu.uniandes.csw.satt.servicios.RegistroService.agregarRegistrosSismo()");
+            }
+	}
         
         return mb;
     }
@@ -65,10 +92,18 @@ public class RegistroService {
     @POST
     @Path("reportarSismo/")
     public List<RegistroSismo> agregarRegistrosSismo(List<RegistroSismo> mb) {
+        Master tm = new Master(getPath());
+        
         for (RegistroSismo reg : mb) {
-            System.out.println(reg.getId() + reg.getLatitud() + reg.getLongitud());
-            registroEjb.agregarRegistroSismo(reg);
-        }
+            
+            try 
+            {
+                tm.agregarRegistroSismico(reg);
+            } catch (Exception e) {
+                System.out.println("co.edu.uniandes.csw.satt.servicios.RegistroService.agregarRegistrosSismo()");
+            }
+	}
+        
         return mb;
     }
  
