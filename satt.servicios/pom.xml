@@ -8,7 +8,7 @@
     <packaging>war</packaging>
 
     <name>satt.servicios</name>
-
+    
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +37,11 @@
             <artifactId>satt.interfaz</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.jdbc</groupId>
+            <artifactId>jdbc7</artifactId>
+            <version>12.1.0.2</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

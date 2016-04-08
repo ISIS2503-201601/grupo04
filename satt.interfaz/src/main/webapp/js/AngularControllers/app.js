@@ -22,10 +22,10 @@
         };
     });
 
-aplicacionMundial.directive('registrosSensores', function(){
+aplicacionMundial.directive('registrossensores', function(){
         return{
             restrict:'E',
-            templateUrl:'partials/registrosSensores.html',
+            templateUrl:'partials/registrossensores.html',
             controller: 'getRegistrosSensores'
         };
     });
@@ -55,7 +55,7 @@ aplicacionMundial.directive('crearRegistroSismico', function(){
             console.log('name');
             $http.post('http://localhost:8080/satt.servicios/webresources/Registro/reportarSismo', JSON.stringify($scope.competitor)).success(function(data,headers){
                 $scope.competitor={};
-                $scope.toolbar.selectTab(2);
+                $scope.toolbar.selectTab(1);
             });
         };
     });

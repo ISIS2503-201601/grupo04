@@ -7,10 +7,9 @@
 package co.edu.uniandes.csw.satt.servicios;
 
 
+import co.edu.uniandes.csw.satt.dto.ListaSensores;
 import co.edu.uniandes.csw.satt.dto.Sensor;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioBoletinDeAlertaMockLocal;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -18,32 +17,52 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioRegistroMockLocal;
-import co.edu.uniandes.csw.satt.logica.interfaces.IServicioSensorMockLocal;
+import co.edu.uniandes.csw.satt.persistencia.mock.Master;
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
  
 @Path("/Sensor")
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class SensorService {
- 
+    
+    
     /**
-     * Referencia al Ejb del catalogo encargada de realizar las operaciones del mismo.
-     */
-    @EJB
-    private IServicioSensorMockLocal registroEjb;
-   
+	 * Atributo que usa la anotaciÃ³n @Context para tener el ServletContext de la conexiÃ³n actual.
+	 */
+	@Context
+	private ServletContext context;
+
+	/**
+	 * MÃ©todo que retorna el path de la carpeta WEB-INF/ConnectionData en el deploy actual dentro del servidor.
+	 * @return path de la carpeta WEB-INF/ConnectionData en el deploy actual.
+	 */
+	private String getPath() {
+		return context.getRealPath("WEB-INF/ConnectionData");
+	}
+	
+	
+	private String doErrorMessage(Exception e){
+		return "{ \"ERROR\": \""+ e.getMessage() + "\"}" ;
+	}
  
     /**
      * Servicio que ofrece una lista JSON con el catálogo de registros de los alpes 
      * @return la lista JSON con los Registros de MDLA.
-  
-     */
+    */
     @GET
     @Path("sensores/")
     public List<Sensor> getTodasLasRegistros() {
-        return registroEjb.darSensores();
- 
+        
+        Master tm = new Master(getPath());
+        
+        try {
+                return tm.darSensores();
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
     
     /**
@@ -53,12 +72,19 @@ public class SensorService {
      */
     @POST
     @Path("agregar/")
-
-    public List<Sensor> agregarRegistros(List<Sensor> mb) {
+    public List<Sensor> agregarSensor(List<Sensor> mb) {
+        
+        Master tm = new Master(getPath());
+        
         for (Sensor sensor : mb) {
-            registroEjb.agregarSensor(sensor);
             
-        }
+            try 
+            {
+                tm.agregarSensor(sensor);
+            } catch (Exception e) {
+
+            }
+	}
         
         return mb;
     }
