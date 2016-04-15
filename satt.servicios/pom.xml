@@ -41,7 +41,7 @@
 
         
         <dependency>
-            <groupId>com.oracle.jdbc</groupId>
+            <groupId>oracle.jdbc.driver.OracleDriver</groupId>
             <artifactId>jdbc7</artifactId>
             <version>12.1.0.2</version>
             <scope>system</scope>
