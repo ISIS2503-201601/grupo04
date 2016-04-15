@@ -79,8 +79,8 @@ public class DAOTablaRegistroSensor {
         public ArrayList<RegistroSensor> darRegistrosSensores() throws SQLException, Exception {
             ArrayList<RegistroSensor> reg = new ArrayList<RegistroSensor>();
 
-            String sql = "SELECT * AS_FROM REGISTRO_SENSOR";
-
+            String sql = "SELECT * FROM AS_REGISTRO_SENSOR";
+            System.out.println("SQL stmt:" + sql);
             PreparedStatement prepStmt = conn.prepareStatement(sql);
             recursos.add(prepStmt);
             ResultSet rs = prepStmt.executeQuery();
