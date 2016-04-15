@@ -77,7 +77,7 @@ public class DAOTablaSensor {
             ArrayList<Sensor> sensores = new ArrayList<Sensor>();
 
             String sql = "SELECT * FROM AS_SENSOR";
-
+            
             PreparedStatement prepStmt = conn.prepareStatement(sql);
             recursos.add(prepStmt);
             ResultSet rs = prepStmt.executeQuery();

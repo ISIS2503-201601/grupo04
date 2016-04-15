@@ -16,15 +16,12 @@
 
     <dependencies>
         
-        <dependency>
-            <groupId>oracle.jdbc.driver.OracleDriver</groupId>
-            <artifactId>jdbc7</artifactId>
-             <version>12.1.0.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ojdbc7.jar</systemPath>
-        </dependency>
         
-
+        <dependency>
+            <groupId>com.oracle.jdbc</groupId>
+            <artifactId>jdbc7</artifactId>
+            <version>12.1.0.2</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
