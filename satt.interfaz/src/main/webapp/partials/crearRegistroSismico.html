@@ -1,0 +1,26 @@
+
+<form name="crearRegistroSismico" ng-submit="addRegSismico()" ng-controller="crearRegSismico" novalidate>
+    <h2 class="form-title">Registrar Sismo</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Id:</label>
+            <input ng-model="competitor.id" type="text" class="form-control" required/>
+        </div>
+        <div class="col-md-6">
+            <label>altura:</label>
+            <input ng-model="competitor.altura" type="text" class="form-control" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>velocidad:</label>
+            <input ng-model="competitor.velocidad" type="text" class="form-control" required/>
+        </div>
+        <div class="col-md-6">
+            <label>IdSensor:</label>
+            <input ng-model="competitor.idSensor" type="number" class="form-control" required/>
+        </div>
+    </div>
+    
+    <input type="submit" value="submit" class="btn btn-default">
+</form>

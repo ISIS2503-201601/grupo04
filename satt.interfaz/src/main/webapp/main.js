@@ -6,7 +6,7 @@ function mainController($scope, $http) {
 	$scope.formData = {};
 
 	// Cuando se cargue la página, pide del API todos los TODOs
-	$http.get('../mueblesdelosalpes.servicios/webresources/Catalogo/muebles')
+	$http.get('../satt.servicios/webresources/Registro/registros')
 		.success(function(data) {
 			$scope.items = data;
 			console.log(data)
