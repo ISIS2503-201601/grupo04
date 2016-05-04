@@ -22,15 +22,15 @@
         };
     });
 
-aplicacionMundial.directive('registrossensores', function(){
+aplicacionMundial.directive('registrosSensores', function(){
         return{
             restrict:'E',
-            templateUrl:'partials/registrossensores.html',
-            controller: 'getRegistrosSensores'
+            templateUrl:'partials/registrosSensores.html',
+            controller: 'getRegSensores'
         };
     });
  
-aplicacionMundial.controller("getRegistrosSensores", function($http, $scope) {
+aplicacionMundial.controller("getRegSensores", function($http, $scope) {
 $http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros').
   success(function(data, status, headers, config) {
     $scope.competitors = data;
@@ -40,26 +40,6 @@ $http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros'
   });
 });
 
-
-aplicacionMundial.directive('crearRegistroSismico', function(){
-        return{
-            restrict:'E',
-            templateUrl:'partials/crearRegistroSismico.html',
-            controller: 'crearRegSismico'
-        };
-    });
- 
-    aplicacionMundial.controller("crearRegSismico", function($http, $scope) {
- 
-        $scope.addRegSismico=function(){
-            console.log('name');
-            $http.post('http://localhost:8080/satt.servicios/webresources/Registro/reportarSismo', JSON.stringify($scope.competitor)).success(function(data,headers){
-                $scope.competitor={};
-                $scope.toolbar.selectTab(1);
-            });
-        };
-    });
-    
     aplicacionMundial.directive('sensores', function(){
         return{
             restrict:'E',
@@ -76,5 +56,24 @@ aplicacionMundial.directive('crearRegistroSismico', function(){
         error(function(data, status, headers, config) {
           // log error
         });
+    });
+    
+    aplicacionMundial.directive('crearRegistroSismico', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/crearRegistroSismico.html',
+            controller: 'crearRegSismico'
+        };
+    });
+ 
+    aplicacionMundial.controller("crearRegSismico", function($http, $scope) {
+ 
+        $scope.addRegSismico=function(){
+            console.log('name');
+            $http.post('http://localhost:8080/satt.servicios/webresources/Registro/reportarSismo', JSON.stringify($scope.competitor)).success(function(data,headers){
+                $scope.competitor={};
+                $scope.toolbar.selectTab(1);
+            });
+        };
     });
 })();
