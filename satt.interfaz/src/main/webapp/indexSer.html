@@ -1,0 +1,46 @@
+<html ng-app="aplicacionMundial">
+    <head>
+        <title>Satt</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+    </head>
+
+
+    <body>
+
+        <div class="container theme-showcase" role="main">
+
+            <div class="row featurette">
+                <!--<div class="col-md-5">
+                    <img src="images/mundial.jpg" class="img-responsive" alt="500x500" data-holder-rendered="true">
+                </div>-->
+                <div class="col-md-7">
+                    <h2>Satt</h2>
+                    <p class="lead">
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+        </div>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/AngularControllers/app.js"></script>
+        
+        <toolbar></toolbar>
+        
+         <div ng-if="toolbar.isSelected(1)">
+            <si></si>
+         </div>
+        <div ng-if="toolbar.isSelected(2)">
+            <re></re>
+        </div>
+         <div ng-if="toolbar.isSelected(3)">
+            <se></se>
+        </div>
+        
+    </body>
+
+
+</html>

@@ -1,46 +1,81 @@
-<html ng-app="aplicacionMundial">
-    <head>
-        <title>Satt</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/app.css">
-    </head>
 
-
-    <body>
-
-        <div class="container theme-showcase" role="main">
-
-            <div class="row featurette">
-                <!--<div class="col-md-5">
-                    <img src="images/mundial.jpg" class="img-responsive" alt="500x500" data-holder-rendered="true">
-                </div>-->
-                <div class="col-md-7">
-                    <h2>Satt</h2>
-                    <p class="lead">
-                    </p>
-                </div>
-            </div>
-            <hr>
-
-        </div>
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/AngularControllers/app.js"></script>
-
-        
-        <toolbar></toolbar>
-        
-        <div ng-if="toolbar.isSelected(1)">
-            <crearRegistroSismico></crearRegistroSismico>
-        </div>
-        <div ng-if="toolbar.isSelected(2)">
-            <registrosSensores></registrosSensores>
-        </div>
-        <div ng-if="toolbar.isSelected(3)">
-            <sensores></sensores>
-        </div>
-    </body>
-
-
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundation 5</title>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
+<link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<body>
+ 
+<div class="row">
+<div class="large-12 columns">
+<div class="nav-bar right">
+<ul class="button-group">
+<li><a href="/satt.servicios/indexSer.html" class="button">Servicios</a></li>
+</ul>
+</div>
+<h1>SATT <small>Servicio de Alerta Temprana de Tsunamis</small></h1>
+<hr/>
+</div>
+</div>
+ 
+ 
+<div class="row">
+ 
+<div class="large-9 columns" role="content">
+<article>
+<div class="row">
+</div>
+<p>
+Un terremoto1 (del latín terra ‘tierra’, y motus ‘movimiento’), también llamado seísmo, sismo (del griego σεισμός [seismós]), temblor, temblor de tierra o movimiento telúrico, es un fenómeno de sacudida brusca y pasajera de la corteza terrestre producida por la liberación de energía acumulada en forma de ondas sísmicas. Los más comunes se producen por la actividad de fallas geológicas. También pueden ocurrir por otras causas como, por ejemplo, fricción en el borde de placas tectónicas, procesos volcánicos o incluso pueden ser producidas por el hombre al realizar pruebas de detonaciones nucleares subterráneas.
+<p>
+El punto de origen de un terremoto se denomina foco o hipocentro. El epicentro es el punto de la superficie terrestre que se encuentra directamente sobre el hipocentro. Dependiendo de su intensidad y origen, un terremoto puede causar desplazamientos de la corteza terrestre, corrimientos de tierras, maremotos (o también llamados tsunamis) o la actividad volcánica. Para medir la energía liberada por un terremoto se emplean diversas escalas, entre ellas, la escala de Richter es la más conocida y utilizada en los medios de comunicación
+</article>
+<hr/>
+</div>
+ 
+ 
+<aside class="large-3 columns">
+<h5>Categories</h5>
+<ul class="side-nav">
+<li><a href="#">Noticias</a></li>
+<li><a href="#">Sobre Nosotros</a></li>
+<li><a href="#">Preguntas frecuentes</a></li>
+<li><a href="#">Contactenos</a></li>
+</ul>
+<div class="panel">
+<h5>Featured</h5>
+<p>Red sismológica Nacional de Colombia: Se permite informar que las preguntas sobre la ocurrencia de un sismo, o la sismicidad registrada en una zona, son resueltas consultando el catálogo de sismicidad disponible en nuestra página web. Este catálogo permite obtener los sismos registrados por la Red Sismológica Nacional de Colombia desde el 1 de junio de 1993.</p>
+<a href="#">Read More &rarr;</a>
+</div>
+</aside>
+ 
+</div>
+ 
+ 
+<footer class="row">
+<div class="large-12 columns">
+<hr/>
+<div class="row">
+<div class="large-6 columns">
+<p>&copy; Copyright Grupo 4</p>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+  </script>
+</body>
 </html>
