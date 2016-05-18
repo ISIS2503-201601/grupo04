@@ -6,6 +6,7 @@
 (function(){var aplicacionMundial= angular.module('aplicacionMundial',[]);
 
     aplicacionMundial.directive('toolbar', function(){
+        
         return{
             restrict:'E',
             templateUrl: 'partials/toolbar.html',
@@ -22,7 +23,8 @@
         };
     });
 
-aplicacionMundial.directive('registrosSensores', function(){
+    aplicacionMundial.directive('re', function(){
+
         return{
             restrict:'E',
             templateUrl:'partials/registrosSensores.html',
@@ -30,17 +32,19 @@ aplicacionMundial.directive('registrosSensores', function(){
         };
     });
  
-aplicacionMundial.controller("getRegSensores", function($http, $scope) {
-$http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros').
-  success(function(data, status, headers, config) {
-    $scope.competitors = data;
-  }).
-  error(function(data, status, headers, config) {
-    // log error
-  });
-});
+    aplicacionMundial.controller("getRegSensores", function($http, $scope) {
 
-    aplicacionMundial.directive('sensores', function(){
+    $http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros').
+      success(function(data, status, headers, config) {
+        $scope.competitors = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+
+    aplicacionMundial.directive('se', function(){
+        
         return{
             restrict:'E',
             templateUrl:'partials/sensores.html',
@@ -58,7 +62,7 @@ $http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros'
         });
     });
     
-    aplicacionMundial.directive('crearRegistroSismico', function(){
+    aplicacionMundial.directive('si', function(){
         return{
             restrict:'E',
             templateUrl:'partials/crearRegistroSismico.html',
