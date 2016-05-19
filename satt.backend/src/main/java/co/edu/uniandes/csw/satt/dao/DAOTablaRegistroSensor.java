@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.satt.dao;
 
 import co.edu.uniandes.csw.satt.dto.RegistroSensor;
-import co.edu.uniandes.csw.satt.dto.Sensor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
