@@ -35,10 +35,10 @@
     aplicacionMundial.controller("getRegSensores", function($http, $scope) {
 
     $http.get('http://localhost:8080/satt.servicios/webresources/Registro/registros').
-      success(function(data, status, headers, config) {
+      success(function(data) {
         $scope.competitors = data;
       }).
-      error(function(data, status, headers, config) {
+      error(function() {
         // log error
       });
     });
@@ -54,10 +54,10 @@
  
     aplicacionMundial.controller("darSensores", function($http, $scope) {
         $http.get('http://localhost:8080/satt.servicios/webresources/Sensor/sensores').
-        success(function(data, status, headers, config) {
+        success(function(data) {
         $scope.competitors = data;
         }).
-        error(function(data, status, headers, config) {
+        error(function() {
           // log error
         });
     });
@@ -74,7 +74,7 @@
  
         $scope.addRegSismico=function(){
             console.log('name');
-            $http.post('http://localhost:8080/satt.servicios/webresources/Registro/reportarSismo', JSON.stringify($scope.competitor)).success(function(data,headers){
+            $http.post('http://localhost:8080/satt.servicios/webresources/Registro/reportarSismo', JSON.stringify($scope.competitor)).success(function(){
                 $scope.competitor={};
                 $scope.toolbar.selectTab(1);
             });
